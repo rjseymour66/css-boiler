@@ -137,7 +137,9 @@ select {
 }
 
 /* --flow-space lets you set the margin-top differently on specific els */
-.flow > * + * {
+
+
+.flow  * + * {
     margin-top: var(--flow-space, 1rem);
 }
 

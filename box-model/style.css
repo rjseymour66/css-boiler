@@ -13,7 +13,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body * + * {
+/* body * + * {
+    margin-top: 1.5em;
+} */
+
+.flow * + * {
     margin-top: 1.5em;
 }
 
@@ -28,9 +32,9 @@ main {
     display: block;
 }
 
-/* .container {
-    display: flex;
-} */
+.container {
+    margin-top: 1em;
+}
 
 .flex {
     display: flex;
