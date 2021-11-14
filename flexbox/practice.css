@@ -1,0 +1,66 @@
+:root {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+.flow * + * {
+    margin-top: 1rem;
+}
+
+header {
+    background-color: #888;
+}
+
+.nav__list {
+    display: flex;
+    list-style-type: none;
+    padding: 1.5em;
+}
+
+.nav__list > li {
+    margin-top: 0;
+}
+
+.nav__list-item > a {
+    display: block;
+    padding: 1rem 1.5rem;
+    border: 2px solid black;
+    border-radius: 1em;
+    background-color: #000;
+    text-decoration: none;
+    color: white;
+}
+
+.nav__list-item:not(:first-child) {
+    margin-left: 1.5rem;
+}
+
+.nav__list > .nav-right {
+    margin-left: auto;
+}
+
+.nav__list-item > a:link {
+    color: blue;
+    text-decoration: none;
+}
+
+.nav__list-item > a:visited {
+    color: red;
+}
+
+.nav__list-item > a:hover {
+    background-color: blueviolet;
+}
+
+.nav__list-item > a:active {
+    background-color: yellow;
+    transform: translateY(0.1em);
+    color: #000;
+}
