@@ -10,6 +10,43 @@ The original intention of vendor prefixes was to allow developers to experiment 
 
 Use [Autoprefixer CSS online](https://autoprefixer.github.io/).
 
+Shorthand properties:
+```css
+.item {
+    /* Apply to all four sides */
+    margin: 1em;
+    margin: -3px;
+
+    /* vertical | horizontal */
+    margin: 5% auto;
+
+    /* top | horizontal | bottom */
+    margin: 1em auto 2em;
+
+    /* top | right | bottom | left */
+    margin: 2px 1em 0 auto;
+}
+```
+
+### Feature queries
+
+Set fallbacks for CSS features that might not yet be supported by all browsers. Use the `@supports` rule:
+
+```css
+@supports (display: grid) {
+    ...
+}
+
+@supports (declaration) or (declaration) {
+    ...
+}
+
+@supports (declaration) and (declaration) {
+    ...
+}
+```
+In the previous example, if the browser supports the grid layout, it applies the styles in the parentheses.
+
 ### Document flow
 Don't set height on a container unless in special circumstances. Normal document flow is designed to work with a constrained width and unlimited height. The height of a container is determined by its contents, not the container.
 
@@ -74,6 +111,8 @@ The following sets the box sizing on the entire document, while allowing you to 
 
 ## Flex
 
+Flexbox allows you to define 1-D layouts. It works from the content out. Use it for rows or columns of similar elements. You don't need to set the size, because that is determined by the content.
+
 Applying `display: flex` to an element turns it into a _flex container_, and all of its children become _flex items_. By default, flex items are the same height.
 
 Flex items align side by side, left to right, in a row. Use `flex-direction` to change this.
@@ -94,7 +133,7 @@ Styling with flexbox involves the following:
 Apply the following properties to the flex container:
 
 ```css
-.container {
+.flex-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -116,7 +155,7 @@ Apply the following properties to the flex container:
 Apply the following properties to the flex container:
 
 ```css
-.item {
+.flex-item {
     order: 3;
     flex-grow: 1;
     flex-shrink: 2;
@@ -191,3 +230,122 @@ For input elements, the width is determined by the size attribute, which is the 
 When creating menu items:
 - Apply padding to the internal `<a>` tags to provide more clickable surface area.
 - Use `display: block;`. This allows its parent to derive the height from their padding, not line height.
+
+
+## Grid
+
+Grid lets you create 2-D layouts. It works from the layout in.
+
+Grid containers behave like block elements, it fills 100% of the available width.
+
+You can use the `fr` unit, which stands for `fraction unit`. This is analogous to `flex-grow` in flexbox.
+
+`grid-gap` defines the amount of space to add to the gutter between each grid cell. If you define this, it lies atop the grid lines.
+
+### Terminology
+
+- grid container: The element that you apply `display: grid` to
+- grid item: A child of the grid container.
+- grid line: The line between the columns and rows.
+- grid cell: Area between grid lines.
+- grid track: The space between two adjacent grid lines.
+- grid area: The total space surrounded by four grid lines.
+
+### Grid container properties
+
+Apply the following properties to the grid container:
+
+```css
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: min-content 1fr min-content;
+    grid-template-areas:
+        ". header     header    ."
+        ". nav        nav       ."
+        ". content    content   ."
+        ". footer     footer    .";
+    /* shorthand for *-columns, *-rows, and *-areas */
+    grid-template: 
+        [row1-start] "header header header" 25px [row1-end]
+        [row2-start] "footer footer footer" 25px [row2-end];
+    column-gap: 2rem;
+    row-gap: 2rem;
+    /* shorthand for row-gap and column-gap*/
+    gap: 2rem 2rem;
+    justify-items: start;
+    align-items: center;
+    /* align-items/justify-items */
+    place-items: center;
+    justify-content: space-around;
+    align-content: end;
+    /* shorthand for align-content and justify-content props */
+    place-content: end space-around;
+    /* size of any implicit grid tracks */
+    grid-auto-columns: 60px 60px;
+    /* places items in the grid automatically */
+    grid-auto-flow: column;
+    grid: 100px 300px / auto-flow 200px;
+}
+```
+
+### Grid item properties
+
+Apply the following properties to the grid items:
+
+```css
+.grid-item {
+    grid-column-start: <number> | <name> | span <number> | span <name> | auto;
+    grid-column-end: <number> | <name> | span <number> | span <name> | auto;
+    grid-row-start: <number> | <name> | span <number> | span <name> | auto;
+    grid-row-end: <number> | <name> | span <number> | span <name> | auto;
+    /* shortnad for previous props */
+    grid-column: <start-line> / <end-line> | <start-line> / span <value>;
+    grid-row: <start-line> / <end-line> | <start-line> / span <value>;
+    grid-area: header;
+    justify-self: start;
+    align-self: center;
+    place-self: stretch;
+}
+```
+
+### Sizing functions and keywords
+
+- `fr`: fractional unit
+- `min-content`: minimum size of the content.
+- `max-content`: maximum size of the content.
+- `minmax(min, max)`: sets the min and max for the element.
+- `repeat(num, size)`: creates `num` rows or columns of `size` width
+
+### Grid areas
+
+If you don't want to count grid lines to place items, use grid areas. You apply `grid-template` on the grid container, and then the `grid-area` property on the child elements:
+
+```css
+.container {
+    display: grid;
+    grid-template-areas:
+        "title  title"
+        "nav    nav"
+        "main   aside1"
+        "main   aside2";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 1.5em;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+header {
+    grid-area: title;
+}
+
+nav {
+    grid-area: nav;
+}
+...
+```
+
+### Implicit grid
+
+Implicit grid tracks have a size of `auto`, which means that they grow to the size of the grid item contents. Use `grid-auto-rows` or `grid-auto-columns` to set a size for implicit grid items.
