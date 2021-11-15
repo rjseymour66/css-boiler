@@ -1,0 +1,97 @@
+:root {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1080px;
+}
+
+/* layout */
+
+.grid {
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "sidebar1"
+        "content"
+        "sidebar2"
+        "footer";
+    grid-template-rows: repeat(2, 1fr) 2fr repeat(2, 1fr);
+    gap: 1.5em;
+}
+
+@media (min-width: 35em) {
+    .grid {
+        display: grid;
+        grid-template-areas: 
+            "header     header      header      header"
+            "sidebar1   content     content     content"
+            "sidebar2   sidebar2    sidebar2    sidebar2"
+            "footer     footer      footer      footer";
+        grid-template-rows: 1fr 2fr repeat(2, 1fr);
+        gap: 1.5em;
+    }
+}
+
+@media (min-width: 45em) {
+    .grid {
+        display: grid;
+        grid-template-areas: 
+            "header     header      header      header"
+            "sidebar1   content     content     sidebar2"
+            "sidebar1   content     content    sidebar2"
+            "footer     footer      footer      footer";
+        grid-template-rows: 1fr 2fr 1fr;
+        gap: 1.5em;
+    }
+}
+
+.header {
+    background-color: gray;
+    color: #fff;
+    padding: 2em 1em;
+    border-radius: .5em;
+
+    grid-area: header;
+}
+
+.sidebar-one {
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+    padding: 2em 1em;
+    border-radius: .5em;
+
+    grid-area: sidebar1;
+}
+
+.content {
+    background-color: rgb(34, 34, 34);
+    color: #fff;
+    padding: 2em 1em;
+    border-radius: .5em;
+
+    grid-area: content;
+}
+
+.sidebar-two {
+    background-color: rgb(131, 131, 131);
+    color: #fff;
+    padding: 2em 1em;
+    border-radius: .5em;
+
+    grid-area: sidebar2;
+}
+
+.footer {
+    background-color: gray;
+    color: #fff;
+    padding: 2em 1em;
+    border-radius: .5em;
+
+    grid-area: footer;
+}

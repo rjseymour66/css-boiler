@@ -1,0 +1,74 @@
+:root {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1080px;
+}
+
+.flow * + * {
+    margin-top: 1rem;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+/* grid layout */
+
+.grid {
+    display: grid;
+    grid-template-areas: 
+        "one    one     two     two"
+        "three  four    four    four"
+        "five   five    five    five";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1em;
+}
+
+.box {
+    padding: 2em;
+    border-radius: .5em;
+}
+
+.red {
+    grid-area: one;
+}
+
+.blue {
+    grid-area: two;
+}
+
+.green {
+    grid-area: three;
+}
+
+.purple {
+    grid-area: four;
+}
+
+.yellow {
+    grid-area: five;
+}

@@ -1,0 +1,78 @@
+:root {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.flow * + * {
+    margin-top: 1rem;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.purple1 {
+    background-color: purple;
+}
+
+.purple2 {
+    background-color: purple;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+/* grid layout */
+
+.grid {
+    display: grid;
+    grid-template-areas: 
+        "one    one     one     one"
+        "two    two     three   three"
+        "two    two     four    five";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1em;
+}
+
+.box {
+    padding: 8em;
+    border-radius: .5em;
+}
+
+.red {
+    grid-area: one;
+}
+
+.blue {
+    grid-area: two;
+}
+
+.green {
+    grid-area: three;
+}
+
+.purple1 {
+    grid-area: four;
+}
+
+.purple2 {
+    grid-area: five;
+}

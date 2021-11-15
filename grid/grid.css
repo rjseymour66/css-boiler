@@ -1,0 +1,158 @@
+:root {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #079b90;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+
+/* layout */
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "title  title"
+        "nav    nav"
+        "main   aside1"
+        "main   aside2";
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 1.5em;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+header {
+    grid-area: title;
+}
+
+nav {
+    grid-area: nav;
+}
+
+.main {
+    grid-area: main;
+}
+
+.sidebar-top {
+    grid-area: aside1;
+}
+
+.sidebar-bottom {
+    grid-area: aside2;
+}
+
+.tile {
+    padding: 1.5em;
+    background-color: #fff;
+}
+
+.tile * + * {
+    margin-top: 1rem;
+}
+
+.tile > :first-child {
+    margin-top: 0;
+}
+
+/* navigation */
+
+.page-heading {
+    margin: 0;
+}
+
+.site-nav {
+    display: flex;
+    margin: 0;
+    padding: .5em;
+    background-color: #5f4b44;
+    list-style-type: none;
+    border-radius: .2em;
+}
+
+.site-nav > li {
+    margin-top: 0;    
+}
+
+.site-nav > li > a {
+    display: block;
+    padding: .5em 1em;
+    background-color: #cc6b5a;
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-nav > li + li {
+    margin-left: 1.5em;
+}
+
+.site-nav > .nav-right {
+    margin-left: auto;
+}
+
+/* login form styles */
+
+.login-form h3 {
+    margin: 0;
+    font-size: .9em;
+    font-weight: bold;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.login-form input:not([type=checkbox]):not([type=radio]) {
+    display: block;
+    width: 100%;
+    margin-top: 0;
+}
+
+.login-form button {
+    margin-top: 1em;
+    border: 1px solid #cc6b5a;
+    background-color: white;
+    padding: .5em 1em;
+    cursor: pointer;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* sidebar 2 */
+.cost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: .7;
+}
+
+.cost > span {
+    margin-top: 0;
+}
+
+.cost-currency {
+    font-size: 2rem;
+}
+
+.cost-dollars {
+    font-size: 4rem;
+}
+
+.cost-cents {
+    font-size: 1.5rem;
+    align-self: flex-start;
+}
+
+.cta-button {
+    display: block;
+    background-color: #cc6b5a;
+    color: white;
+    padding: .5em 1em;
+    text-decoration: none;
+}
