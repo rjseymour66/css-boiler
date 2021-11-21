@@ -532,6 +532,8 @@ The following CSS creates the positioned context:
 
 This is a hybrid between relative and fixed positioning. The element scrolls until it reaches a specified spot in the viewport and then it 'sticks' in place.
 
+You do not need a containing block for `sticky` positioning.
+
 
 ## Stacking contexts with z-index
 
